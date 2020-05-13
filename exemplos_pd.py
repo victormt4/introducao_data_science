@@ -38,5 +38,12 @@ print('\nInfo gerais:\n')
 print(dataset.info())
 
 print('\nSelecionando o cabeçalho:\n')
-dataset = dataset.head()
-print(dataset)
+print(dataset.head())
+
+print('\nIterando DataFrame:\n')
+for index, row in dataset.iterrows():
+    if (2019 - row['Ano']) != 0:
+        dataset.loc[index, 'Km_media'] = row['Quilometragem'] / (2019 - row['Ano'])  # Calculando quilometragem média
+    else:
+        dataset.loc[index, 'Km_media'] = 0
+print(dataset.head())
