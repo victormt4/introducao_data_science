@@ -41,9 +41,15 @@ print('\nSelecionando o cabeçalho:\n')
 print(dataset.head())
 
 print('\nIterando DataFrame:\n')
+dataset.fillna(0, inplace=True)  # atualiza os valores nulos para 0
 for index, row in dataset.iterrows():
-    if (2019 - row['Ano']) != 0:
-        dataset.loc[index, 'Km_media'] = row['Quilometragem'] / (2019 - row['Ano'])  # Calculando quilometragem média
+    if (2020 - row['Ano']) != 0:
+        dataset.loc[index, 'Km_media'] = row['Quilometragem'] / (2020 - row['Ano'])  # Calculando quilometragem média
     else:
         dataset.loc[index, 'Km_media'] = 0
 print(dataset.head())
+
+print('\nRemovendo valores nulos:\n')
+dataset = pd.read_csv('./data/db.csv', sep=';')
+dataset.dropna(subset=['Quilometragem'], inplace=True)
+print(dataset)
