@@ -3,17 +3,6 @@ import pandas as pd
 # pd.set_option('display.max_rows', 500)
 # pd.set_option('display.max_columns', 500)
 
-dataset = pd.read_csv('./data/db.csv', sep=';')
-
-print('Tipos das colunas:\n')
-print(dataset.dtypes)
-
-print('\nResumo estatístico:\n')
-print(dataset[['Quilometragem', 'Valor']].describe())
-
-print('\nInfo gerais:\n')
-print(dataset.info())
-
 print('\nCriando DataFrame\n')
 # Usando uma lista de dicionário
 dados = [
@@ -34,7 +23,44 @@ dados = {
     'Valor': [88078.64, 106161.94, 72832.16]
 }
 dataset = pd.DataFrame(dados)
+
+# Usando arquivo
+dataset = pd.read_csv('./data/db.csv', sep=';', index_col=0)  # index_col: identifica a coluna do índice primário
 print(dataset)
 
-print('\nAlterando ordem das colunas:\n')
-print(dataset[['Nome', 'Ano', 'Quilometragem', 'Valor', 'Zero_km', 'Motor']])
+print('Tipos das colunas:\n')
+print(dataset.dtypes)
+
+print('\nResumo estatístico:\n')
+print(dataset[['Quilometragem', 'Valor']].describe())
+
+print('\nInfo gerais:\n')
+print(dataset.info())
+
+print('\nSelecionando o cabeçalho:\n')
+dataset = dataset.head()
+print(dataset)
+
+print('\nSelecionando uma coluna:\n')
+print(dataset['Valor'])
+
+print('\nSelecionando múltiplas colunas:\n')
+print(dataset[['Quilometragem', 'Valor']])
+
+print('\nSelecionando linhas:\n')
+print(dataset[0:3])
+
+print('\nSelecionar pela coluna:\n')
+print(dataset.loc['Passat'])
+
+print('\nSelecionar por multiplos valores da coluna:\n')
+print(dataset.loc[['Passat', 'Crossfox']])
+
+print('\nSelecionar linhas e colunas:\n')
+print(dataset.loc[['Passat', 'Crossfox'], ['Quilometragem', 'Valor']])
+
+print('\nSelecionar pelo índice númerico:\n')
+print(dataset.iloc[1])
+
+print('\nSelecionar linhas e colunas pelo índice numérico:\n')
+print(dataset.iloc[:3, [0, 2]])
