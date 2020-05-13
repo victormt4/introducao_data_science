@@ -40,27 +40,3 @@ print(dataset.info())
 print('\nSelecionando o cabeçalho:\n')
 dataset = dataset.head()
 print(dataset)
-
-print('\nSelecionando uma coluna:\n')
-print(dataset['Valor'])
-
-print('\nSelecionando múltiplas colunas:\n')
-print(dataset[['Quilometragem', 'Valor']])
-
-print('\nSelecionando linhas:\n')
-print(dataset[0:3])
-
-print('\nSelecionar pela coluna:\n')
-print(dataset.loc['Passat'])
-
-print('\nSelecionar por multiplos valores da coluna:\n')
-print(dataset.loc[['Passat', 'Crossfox']])
-
-print('\nSelecionar linhas e colunas:\n')
-print(dataset.loc[['Passat', 'Crossfox'], ['Quilometragem', 'Valor']])
-
-print('\nSelecionar pelo índice númerico:\n')
-print(dataset.iloc[1])
-
-print('\nSelecionar linhas e colunas pelo índice numérico:\n')
-print(dataset.iloc[:3, [0, 2]])
